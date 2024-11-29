@@ -1,0 +1,170 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Nerko+One&family=Oxanium:wght@200..800&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap');
+
+:root {
+    --cor-menu: #F2AE2E;
+    --cor-textos: #362D73;
+    --cor-fundo: #87C5F0;
+    --roxo-claro: #49378C;
+
+    --fonte-textos: "Oxanium", serif;
+    --fonte-titulos: "Oxanium", cursive;
+
+}
+
+body {
+    font-family: var(--fonte-textos);
+    background-color: var(--cor-fundo);
+    cursor: url("img/cursor.png"), auto;
+}
+
+a {
+    cursor: url("img/hover.png"), auto;
+}
+
+#barra-nav {
+    background-color: var(--cor-menu);
+    padding: 1rem 0;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    z-index: 1000;
+}
+
+#barra-nav ul {
+    margin: 0;
+    padding: 0;
+    text-align: right;
+    padding-right: 5rem;
+}
+
+#barra-nav li {
+    display: inline-block;
+    margin-right: 10px;
+    font-weight: bold;
+    padding: 5px 2px;
+}
+
+#barra-nav .nav-link:hover {
+    color: #000;
+    background-color: rgba(255, 255, 255, 0.5);
+    text-decoration: none;
+}
+
+#logo img {
+    display: inline-block;
+    position: relative;
+    left: 5rem;
+    width: 40px;
+}
+
+.hero-texto {
+    text-align: center;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+}
+
+.hero {
+    height: 100vh;
+    position: relative;
+    background: url("img/Hero.jpg");
+    background-size: cover;
+}
+
+.hero-titulo {
+    font-size: 4.5rem;
+    font-family: var(--fonte-titulos);
+    color: var(--cor-menu);
+}
+
+.hero-sub {
+    font-size: 2rem;
+}
+
+#post {
+    position: relative;
+}
+
+.titulo-posts {
+    position: absolute;
+    top: -15%;
+    left: 50%;
+    transform: translateX(-50%);
+    color: white;
+}
+
+#post, #criar {
+    margin: 5rem;
+    background-color: var(--roxo-claro);
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+#post-form {
+    display: flex;
+    flex-direction: column;
+}
+#post-form input {
+    width: 100%;
+}
+
+#post-form textarea{
+    min-width: 100%;
+    max-width: 100%;
+    min-height: 10rem;
+}
+
+#post-form button{
+    width: 30%;
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+#post, #criar, #sobre {
+    margin: 5rem;
+    background-color: var(--roxo-claro);
+    border-radius: 10px;
+    padding: 2rem;
+}
+
+.desc {
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+}
+
+.selfie {
+    width: 100%;
+    padding: 1rem 0;
+}
+
+.desc p{
+    padding: 1rem 0;
+}
+
+.icone-contato {
+    width: 2rem;
+    padding-bottom: 1rem;
+}
+
+.lixeira{
+    width: 1rem;
+}
+
+#comentario{
+    min-width: 100%;
+}
+
+.rodape {
+    background-color: rgba(255, 255, 255, 0);
+    width: 100%;
+    color: white;
+}
