@@ -1,56 +1,106 @@
-document.addEventListener('DOMContentLoaded', function(){
+document.addEventListener('DOMContentLoaded', function() {
     document.getElementById('publicar').addEventListener('click', adicionarPost);
-})
+});
 
-function adicionarPost(){
-    
+function adicionarPost() {
     const titulo = document.getElementById('post-titulo').value;
     const conteudo = document.getElementById('post-conteudo').value;
 
-    
     const postElemento = document.createElement('article');
+    const comentarioId = `comentario-${Date.now()}`;
 
-    
-    postElemento.innerHTML = `
-        <h3>${titulo}</h3>
-        <p>Data da publicação: <time>${new Date().toLocaleDateString()}</time></p>
-        <p>${conteudo}</p>
-        <button class="excluir-post" onclick="excluirPost(this)"> 
-        <img class=”lixeira”  src=”img/trash-can.png” alt=”ícone de lata de lixo”>
-        </button>
-        <div class="form-comentario">
-        <label for="comentario">Comentario:</label>
-        <textarea id="comentario" class="comentario-input" placeholder="Deixe seu comentario.."></textarea>
-        <button class="adicionar-comentario" onclick="adicionarcomentario(this)"></button>
-        </div>
-        <div class="comentarios"></div>
-    `;
+    const tituloElemento = document.createElement('h3');
+    tituloElemento.textContent = titulo;
 
-    
+    const dataElemento = document.createElement('p');
+    dataElemento.innerHTML = `Data da publicação: <time>${new Date().toLocaleDateString()}</time>`;
+
+    const conteudoElemento = document.createElement('p');
+    conteudoElemento.textContent = conteudo;
+
+    const botaoExcluir = document.createElement('button');
+    botaoExcluir.className = 'excluir-post';
+    botaoExcluir.type = 'button';
+    botaoExcluir.addEventListener('click', function() {
+        excluirPost(botaoExcluir);
+    });
+
+    const iconeExcluir = document.createElement('img');
+    iconeExcluir.className = 'lixeira';
+    iconeExcluir.src = 'img/trash-can.png';
+    iconeExcluir.alt = 'Ícone de lixeira';
+    botaoExcluir.appendChild(iconeExcluir);
+
+    const formularioComentario = document.createElement('div');
+    formularioComentario.className = 'form-comentario';
+
+    const labelComentario = document.createElement('label');
+    labelComentario.htmlFor = comentarioId;
+    labelComentario.textContent = 'Comentário:';
+
+    const textareaComentario = document.createElement('textarea');
+    textareaComentario.id = comentarioId;
+    textareaComentario.className = 'comentario-input';
+    textareaComentario.placeholder = 'Deixe seu comentário...';
+
+    const botaoComentario = document.createElement('button');
+    botaoComentario.className = 'adicionar-comentario';
+    botaoComentario.type = 'button';
+    botaoComentario.textContent = 'Adicionar comentário';
+    botaoComentario.addEventListener('click', function() {
+        adicionarComentario(botaoComentario);
+    });
+
+    formularioComentario.append(labelComentario, textareaComentario, botaoComentario);
+
+    const comentariosContainer = document.createElement('div');
+    comentariosContainer.className = 'comentarios';
+
+    postElemento.append(
+        tituloElemento,
+        dataElemento,
+        conteudoElemento,
+        botaoExcluir,
+        formularioComentario,
+        comentariosContainer
+    );
+
     const postsSection = document.getElementById('post');
-    const primeiroPost = postsSection.firstChild;
-    postsSection.insertBefore(postElemento, primeiroPost);
+    const tituloPosts = postsSection.querySelector('h2');
+    const primeiroPost = tituloPosts ? tituloPosts.nextElementSibling : null;
+    if (primeiroPost) {
+        postsSection.insertBefore(postElemento, primeiroPost);
+    } else {
+        postsSection.appendChild(postElemento);
+    }
 
-    
     document.getElementById('post-form').reset();
 }
 
-window.excluirPost = function(button){
+function excluirPost(button) {
     const postElemento = button.closest('article');
-    postElemento.remove()
+    if (postElemento) {
+        postElemento.remove();
+    }
 }
 
-window.adicionarComentario = function(button) {
+function adicionarComentario(button) {
     const postElemento = button.closest('article');
+    if (!postElemento) {
+        return;
+    }
 
     const comentariosDiv = postElemento.querySelector('.comentarios');
+    const comentarioInput = postElemento.querySelector('.comentario-input');
+    if (!comentariosDiv || !comentarioInput) {
+        return;
+    }
 
-    const comentarioInput = postElemento.querySelector('.comentarios-input');
+    const comentario = comentarioInput.value.trim();
 
-    const comentario = comentarioInput.value.trim(); 
-
-    if(comentario != ''){
-        const comentarioElemento = document.createElement('');
+    if (comentario !== '') {
+        const comentarioElemento = document.createElement('p');
+        comentarioElemento.className = 'comentario-item';
 
         comentarioElemento.textContent = comentario;
 
