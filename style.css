@@ -100,13 +100,6 @@ a {
     color: white;
 }
 
-#post, #criar {
-    margin: 5rem;
-    background-color: var(--roxo-claro);
-    border-radius: 10px;
-    padding: 2rem;
-}
-
 #post-form {
     display: flex;
     flex-direction: column;
@@ -159,7 +152,7 @@ a {
     width: 1rem;
 }
 
-#comentario{
+.comentario-input{
     min-width: 100%;
 }
 
